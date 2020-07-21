@@ -1,6 +1,6 @@
 from telegram.ext import Updater, CommandHandler
 
-TOKEN_ONOFF = "YOUR_TOKEN" 
+TOKEN_ONOFF = "1140221191:AAFIl-gMrFLhFXQbN1-6yULibvBPLvHAn7M" 
 
 telegram_act = None
 

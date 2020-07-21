@@ -1,0 +1,9 @@
+\babel@toc {italian}{}
+\babel@toc {italian}{}
+\contentsline {section}{\numberline {1}Introduzione}{3}
+\contentsline {section}{\numberline {2}Componenti}{4}
+\contentsline {subsection}{\numberline {2.1}HC-SR501 Sensore PIR}{4}
+\contentsline {section}{\numberline {3}Architettura}{5}
+\contentsline {section}{\numberline {4}Circuito}{6}
+\contentsline {section}{\numberline {5}Librerie}{6}
+\contentsline {section}{\numberline {6}Conversione video}{7}

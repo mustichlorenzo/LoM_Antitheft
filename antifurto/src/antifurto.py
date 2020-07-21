@@ -12,7 +12,7 @@ import ffmpeg
 
 import onoff
 
-TOKEN = "YOUR_TOKEN"
+TOKEN = "1189292018:AAEx7l41_aUyu0HNPF3dWAo6tuH5tYsfAGE"
 
 bot = telegram.Bot(TOKEN)
 
