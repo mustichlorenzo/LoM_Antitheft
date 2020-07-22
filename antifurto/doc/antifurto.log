@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.7.21)  22 JUL 2020 11:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.7.21)  22 JUL 2020 16:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -641,25 +641,41 @@ LaTeX Font Info:    Try loading font information for T1+cmtt on input line 138.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-) [6 <./resources/circuito.png>] [7] [8] [9] [10]
+) [6 <./resources/circuito.png>] [7] [8] [9]
+<./resources/video.png, id=48, 1113.56026pt x 616.10175pt>
+File: ./resources/video.png Graphic file (type png)
+<use ./resources/video.png>
+Package pdftex.def Info: ./resources/video.png  used on input line 294.
+(pdftex.def)             Requested size: 361.34999pt x 199.92046pt.
+ [10 <./resources/video.png>] [11
+
+]
+<./resources/onoff.png, id=55, 1112.35574pt x 613.69275pt>
+File: ./resources/onoff.png Graphic file (type png)
+<use ./resources/onoff.png>
+Package pdftex.def Info: ./resources/onoff.png  used on input line 345.
+(pdftex.def)             Requested size: 361.34999pt x 199.35414pt.
+
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
-) [11]
-(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+) [12
+
+ <./resources/onoff.png>] (/usr/share/texlive/texmf-dist/tex/latex/listings/lst
+lang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
-) [12] [13]
+) [13] [14]
 (./antifurto.aux) ) 
 Here is how much of TeX's memory you used:
- 5486 strings out of 494912
- 71601 string characters out of 6180266
- 244808 words of memory out of 5000000
- 8708 multiletter control sequences out of 15000+600000
+ 5496 strings out of 494912
+ 71825 string characters out of 6180266
+ 241922 words of memory out of 5000000
+ 8716 multiletter control sequences out of 15000+600000
  15155 words of font info for 37 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  41i,6n,51p,795b,1808s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -674,10 +690,10 @@ ts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/lorenzo/.texlive2017/texmf-var/
 fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk> </home/lorenzo/.texlive2017/texmf-v
 ar/fonts/pk/ljfour/jknappen/ec/ecrm2074.600pk></usr/share/texlive/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on antifurto.pdf (13 pages, 992002 bytes).
+Output written on antifurto.pdf (14 pages, 3769269 bytes).
 PDF statistics:
- 421 PDF objects out of 1000 (max. 8388607)
- 71 compressed objects within 1 object stream
+ 426 PDF objects out of 1000 (max. 8388607)
+ 73 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 31 words of extra memory for PDF output out of 10000 (max. 10000000)
 

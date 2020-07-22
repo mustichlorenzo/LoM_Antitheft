@@ -289,6 +289,14 @@
             	pirState = GPIO.LOW
 	\end{lstlisting}
 
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=5.0in]{video}
+		\caption{Bot per ricezione video} 
+	\end{figure}
+
+
+	\clearpage
 	Di seguito il codice del bot di attivazione: \textit{onoff.py}
 	\begin{lstlisting}[language=Python]
 	from telegram.ext import Updater, CommandHandler
@@ -330,6 +338,13 @@
 
     	updater.start_polling()
 	\end{lstlisting}
+
+	\clearpage
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=5.0in]{onoff}
+		\caption{Bot per attivazione e disattivazione antifurto}
+	\end{figure}
 	
 	Di seguito il codice relativo ad Arduino: \textit{check\_password.ino}
 	\begin{lstlisting}[language=C]

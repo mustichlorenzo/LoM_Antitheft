@@ -12,28 +12,26 @@ import ffmpeg
 
 import onoff
 
-TOKEN = "YOUR_TOKEN"
+TOKEN = "1189292018:AAEx7l41_aUyu0HNPF3dWAo6tuH5tYsfAGE"
 
 bot = telegram.Bot(TOKEN)
 
 camera = PiCamera()
 
-#Initialize Raspberry's pinMode and pins
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(26, GPIO.IN)
 GPIO.setup(17, GPIO.OUT)
 GPIO.setup(27, GPIO.OUT)
 GPIO.setup(22, GPIO.OUT)
 
-#Initialize Raspberry serial
 ser = serial.Serial("/dev/ttyUSB0", 9600)
 
-#Initialize variables for threads
 activated = False
 numState = 0
 mutex = Lock()
 
-#Activation by serial Thread
+
+
 class activateSerialThread(Thread):
     def run(self):
         global activated, numState
@@ -59,8 +57,7 @@ class activateSerialThread(Thread):
                 
                 mutex.release()
 
-                
-#Activation by bot Thread               
+               
 class activateBotThread(Thread):
     def run(self):
         global activated, numState
@@ -93,8 +90,7 @@ class activateBotThread(Thread):
                 
                 mutex.release()
 
-
-#Initialize PIR variables
+               
 pirState = GPIO.LOW
 val = 0
 
@@ -105,7 +101,6 @@ activateST.start()
 activateBT.start()
 
 onoff.update_bot()
-
 
 while True:
     if activated:
@@ -119,16 +114,13 @@ while True:
                 GPIO.output(27, GPIO.HIGH)
                 GPIO.output(22, GPIO.HIGH)
     
-                #PiCamera records only in .mjpeg or .h264
                 camera.start_recording("/home/pi/video.h264")
                 sleep(10)
                 camera.stop_recording()
         
                 if bot.get_updates():
                     chat_id = bot.get_updates()[-1].message.chat_id
-                   
-                    #The version of Telegram for smartphone is unable to read file.mp4 or file.h264. In order to achieve this is
-                    #important to convert the video file in .mp4
+                    
                     os.system("ffmpeg -y -r 15 -i /home/pi/video.h264 -an -c:v copy /home/pi/video.mp4 > /dev/null 2>&1")
                     bot.send_video(chat_id, video = open("/home/pi/video.mp4", 'rb'), supports_streaming = True)
                 else: 
