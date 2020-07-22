@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.7.21)  21 JUL 2020 22:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.7.21)  22 JUL 2020 11:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -422,37 +422,71 @@ Now handling font encoding U ...
    defining Unicode char U+2026 (decimal 8230)
    defining Unicode char U+2122 (decimal 8482)
    defining Unicode char U+2423 (decimal 9251)
-)) (./antifurto.aux)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: pdftex.def on input line 147.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count96
+\lst@gtempboxa=\box26
+\lst@token=\toks18
+\lst@length=\count97
+\lst@currlwidth=\dimen114
+\lst@column=\count98
+\lst@pos=\count99
+\lst@lostspace=\dimen115
+\lst@width=\dimen116
+\lst@newlines=\count100
+\lst@lineno=\count101
+\lst@maxwidth=\dimen117
+
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
+\c@lstnumber=\count102
+\lst@skipnumbers=\count103
+\lst@framebox=\box27
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2015/06/04 1.6 listings configuration
+))
+Package: listings 2015/06/04 1.6 (Carsten Heinz)
+
+(./antifurto.aux)
 \openout1 = `antifurto.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Info: Redefining \it@ocap on input line 15.
-LaTeX Info: Redefining \it@ccap on input line 15.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Info: Redefining \it@ocap on input line 23.
+LaTeX Info: Redefining \it@ccap on input line 23.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count96
-\scratchdimen=\dimen114
-\scratchbox=\box26
-\nofMPsegments=\count97
-\nofMParguments=\count98
-\everyMPshowfont=\toks18
-\MPscratchCnt=\count99
-\MPscratchDim=\dimen115
-\MPnumerator=\count100
-\makeMPintoPDFobject=\count101
-\everyMPtoPDFconversion=\toks19
+\scratchcounter=\count104
+\scratchdimen=\dimen118
+\scratchbox=\box28
+\nofMPsegments=\count105
+\nofMParguments=\count106
+\everyMPshowfont=\toks19
+\MPscratchCnt=\count107
+\MPscratchDim=\dimen119
+\MPnumerator=\count108
+\makeMPintoPDFobject=\count109
+\everyMPtoPDFconversion=\toks20
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -539,14 +573,15 @@ e
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
+\c@lstlisting=\count110
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 16.
+(Font)              <14.4> on input line 24.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 16.
+(Font)              <7> on input line 24.
 <./resources/prototipo.jpeg, id=1, 1505.625pt x 2007.5pt>
 File: ./resources/prototipo.jpeg Graphic file (type jpg)
 <use ./resources/prototipo.jpeg>
-Package pdftex.def Info: ./resources/prototipo.jpeg  used on input line 21.
+Package pdftex.def Info: ./resources/prototipo.jpeg  used on input line 29.
 (pdftex.def)             Requested size: 289.07999pt x 385.44176pt.
 [1
 
@@ -563,15 +598,15 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 \openout3 = `antifurto.toc'.
 
  [2]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 37.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 45.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 37.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 45.
 
-Overfull \hbox (40.77052pt too wide) in paragraph at lines 37--39
+Overfull \hbox (40.77052pt too wide) in paragraph at lines 45--47
 []\T1/cmr/m/n/12 utilizzando un bot scrit-to ap-po-si-ta-men-te: \T1/cmr/bx/n/1
 2 An-ti-Thef-tO-nOff \T1/cmr/m/n/12 (\T1/cmr/bx/it/12 @ATOnOffBot\T1/cmr/m/n/12
  ); 
@@ -581,7 +616,7 @@ Overfull \hbox (40.77052pt too wide) in paragraph at lines 37--39
 <./resources/componenti.jpeg, id=20, 1129.21875pt x 2007.5pt>
 File: ./resources/componenti.jpeg Graphic file (type jpg)
 <use ./resources/componenti.jpeg>
-Package pdftex.def Info: ./resources/componenti.jpeg  used on input line 67.
+Package pdftex.def Info: ./resources/componenti.jpeg  used on input line 76.
 (pdftex.def)             Requested size: 144.54pt x 256.94075pt.
  [4
 
@@ -589,38 +624,60 @@ Package pdftex.def Info: ./resources/componenti.jpeg  used on input line 67.
 <./resources/architettura.png, id=26, 590.205pt x 361.35pt>
 File: ./resources/architettura.png Graphic file (type png)
 <use ./resources/architettura.png>
-Package pdftex.def Info: ./resources/architettura.png  used on input line 85.
-(pdftex.def)             Requested size: 216.81pt x 132.738pt.
+Package pdftex.def Info: ./resources/architettura.png  used on input line 94.
+(pdftex.def)             Requested size: 289.07999pt x 176.99136pt.
  [5 <./resources/architettura.png>]
 <./resources/circuito.png, id=32, 432.817pt x 414.348pt>
 File: ./resources/circuito.png Graphic file (type png)
 <use ./resources/circuito.png>
-Package pdftex.def Info: ./resources/circuito.png  used on input line 106.
+Package pdftex.def Info: ./resources/circuito.png  used on input line 115.
 (pdftex.def)             Requested size: 325.215pt x 311.33557pt.
 
-[6 <./resources/circuito.png>] [7] (./antifurto.aux) ) 
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2015/06/04 1.6 listings language file
+)
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 138.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+) [6 <./resources/circuito.png>] [7] [8] [9] [10]
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2015/06/04 1.6 listings language file
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
+) [11]
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2015/06/04 1.6 listings language file
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2015/06/04 1.6 listings language file
+) [12] [13]
+(./antifurto.aux) ) 
 Here is how much of TeX's memory you used:
- 3366 strings out of 494912
- 43732 string characters out of 6180266
- 114154 words of memory out of 5000000
- 6622 multiletter control sequences out of 15000+600000
- 14072 words of font info for 35 fonts, out of 8000000 for 9000
+ 5486 strings out of 494912
+ 71601 string characters out of 6180266
+ 244808 words of memory out of 5000000
+ 8708 multiletter control sequences out of 15000+600000
+ 15155 words of font info for 37 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 41i,6n,25p,795b,228s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/lorenzo/.texlive2
-017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1200.600pk> </home/lorenzo/.texli
-ve2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/lorenzo/.te
-xlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbi1200.600pk> </home/lorenzo/
-.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/loren
-zo/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk> </home/lo
-renzo/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home
-/lorenzo/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk> </h
-ome/lorenzo/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2074.600pk><
-/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on antifurto.pdf (7 pages, 955508 bytes).
+ 41i,6n,51p,795b,1808s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </home/lorenzo/.texlive2017/texmf-var/fonts/pk/ljfour/jknap
+pen/ec/ectt1095.600pk> </home/lorenzo/.texlive2017/texmf-var/fonts/pk/ljfour/jk
+nappen/ec/ecti1200.600pk> </home/lorenzo/.texlive2017/texmf-var/fonts/pk/ljfour
+/jknappen/ec/ecbx1440.600pk> </home/lorenzo/.texlive2017/texmf-var/fonts/pk/ljf
+our/jknappen/ec/ecbi1200.600pk> </home/lorenzo/.texlive2017/texmf-var/fonts/pk/
+ljfour/jknappen/ec/ecbx1200.600pk> </home/lorenzo/.texlive2017/texmf-var/fonts/
+pk/ljfour/jknappen/ec/ecbx1728.600pk> </home/lorenzo/.texlive2017/texmf-var/fon
+ts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/lorenzo/.texlive2017/texmf-var/
+fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk> </home/lorenzo/.texlive2017/texmf-v
+ar/fonts/pk/ljfour/jknappen/ec/ecrm2074.600pk></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on antifurto.pdf (13 pages, 992002 bytes).
 PDF statistics:
- 305 PDF objects out of 1000 (max. 8388607)
- 54 compressed objects within 1 object stream
+ 421 PDF objects out of 1000 (max. 8388607)
+ 71 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

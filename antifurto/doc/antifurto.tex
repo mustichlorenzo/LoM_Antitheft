@@ -9,6 +9,14 @@
 \geometry{a4paper, top=3cm, bottom=3cm, left=3.5cm, right=3.5cm}
 \graphicspath{ {./resources/} }
 
+\usepackage{color}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\usepackage{listings}
+\lstset{aboveskip=3mm, belowskip=3mm, breaklines=true, showstringspaces=false, basicstyle={\small\ttfamily}, numberstyle=\tiny\color{gray}, keywordstyle=\color{blue}, commentstyle=\color{dkgreen}, stringstyle=\color{mauve}, tabsize=2}
+
 \title{Un implementazione di un sistema antifurto con Arduino e Raspberry Pi}
 \author{Lorenzo Mustich}
 
@@ -36,9 +44,10 @@
 	\begin{itemize}
 		\item utilizzando un bot scritto appositamente: \textbf{AntiTheftOnOff} 
 		(\textbf{\textit{@ATOnOffBot}});
-		\item nel caso in cui non si abbia la suddetta applicazione, digitando una serie di caratteri 
-		alfanumerici per mezzo del tastierino a membrana.
+		\item digitando una serie di caratteri 
+		alfanumerici per mezzo del tastierino a membrana, nel caso in cui non si abbia la suddetta applicazione.
 	\end{itemize}
+
 	Una volta attivato, un sensore PIR, appositamente tarato, rileverà eventuali movimenti 
 	all'interno del suo campo visivo innescando l'accensione di una spia e di un allarme prodotto 
 	da un buzzer attivo; successivamente, una videocamera produrrà un filmato di pochi secondi 
@@ -59,7 +68,7 @@
 			\item Tastiera a membrana 4x4 16 tasti;
 		\end{itemize}
 		\item Led rosso/verde;
-		\item Resistenze da ohm e da ohm
+		\item Due resistenze da 220 ohm
 	\end{itemize}
 	
 	\begin{figure}[h]
@@ -69,7 +78,7 @@
 	\end{figure}
 
 	\subsection{HC-SR501 Sensore PIR}
-	Si tratta di un sensore composto da due slot composte da un materiale sensibile agli infrarossi.
+	Si tratta di un sensore composto da due slot di materiale sensibile agli infrarossi.
 	Quando è in stato di \textit{idle}, i due slot captano la stessa quantità di raggi; 
 	nel momento in cui un corpo caldo entra nella zona d'azione del sensore intercetterà il primo 
 	dei due slot creando una differenza di potenziale all'interno del sensore. Quando il corpo lascia
@@ -82,7 +91,7 @@
 	\section{Architettura}
 	\begin{figure}[h]
 		\centering
-		\includegraphics[width=3.0in]{architettura}
+		\includegraphics[width=4.0in]{architettura}
 		\caption{Architettura del sistema}
 	\end{figure}
 	
@@ -124,6 +133,264 @@
 		\end{itemize}
 	\end{itemize}
 
+	\section{Codice}
+	Di seguito è presentato lo script principale del sistema: \textit{antifurto.py}
+	\begin{lstlisting}[language=Python]
+	import os
+	import telegram
+
+	from picamera import PiCamera
+	from time import sleep
+
+	import RPi.GPIO as GPIO 
+	import serial 
+
+	from threading import Thread, Lock
+	import ffmpeg
+
+	#onoff.py
+	import onoff
+
+	TOKEN = "YOUR_TOKEN"
+
+	bot = telegram.Bot(TOKEN)
+
+	camera = PiCamera()
+
+	#Initialize Raspberry's pinMode and pins
+	GPIO.setmode(GPIO.BCM)
+	GPIO.setup(26, GPIO.IN)
+	GPIO.setup(17, GPIO.OUT)
+	GPIO.setup(27, GPIO.OUT)
+	GPIO.setup(22, GPIO.OUT)
+
+	#Initialize Raspberry serial
+	ser = serial.Serial("/dev/ttyUSB0", 9600)
+
+	#Initialize variables for threads
+	activated = False
+	numState = 0
+	mutex = Lock()
+
+	#Activation by serial Thread
+	class activateSerialThread(Thread):
+    	def run(self):
+        	global activated, numState
+
+        	while True:
+            	if ser.read().decode('ascii') == 'y':
+                	mutex.acquire()
+                
+                	if numState % 2 == 0:
+                    	print("ATTIVATO SERIALE!")
+                    	activated = True
+                	else:
+                    	print("DISATTIVATO SERIALE!")
+                    	activated = False
+                
+                	numState = numState + 1
+              
+                	for i in range(3):
+                    	GPIO.output(17, GPIO.HIGH)
+                    	sleep(0.1)
+                    	GPIO.output(17, GPIO.LOW)
+                    	sleep(0.1)
+                
+               		mutex.release()
+
+                
+	#Activation by bot Thread               
+	class activateBotThread(Thread):
+    	def run(self):
+        	global activated, numState
+
+        	while True:
+            	if onoff.telegram_act is not None:
+                	if onoff.telegram_act:
+                    	mutex.acquire()
+         
+                    	print("ATTIVATO!")
+                    	activated = True
+                    	onoff.telegram_act = None
+               
+                    	numState = numState + 1
+               
+                	elif not onoff.telegram_act:
+                    	mutex.acquire()
+                   
+                   	 	print("DISATTIVATO!")
+                    	activated = False
+                    	onoff.telegram_act = None
+                    
+                    	numState = numState + 1
+               
+                	for i in range(3):
+                    	GPIO.output(17, GPIO.HIGH)
+                    	sleep(0.1)
+                    	GPIO.output(17, GPIO.LOW)
+                    	sleep(0.1)
+                
+                	mutex.release()
+
+
+	#Initialize PIR variables
+	pirState = GPIO.LOW
+	val = 0
+
+	activateST = activateSerialThread()
+	activateBT = activateBotThread()
+
+	activateST.start()
+	activateBT.start()
+
+	onoff.update\_bot()
+
+
+	while True:
+    	if activated:
+        	val = GPIO.input(26)
+
+        	if val == GPIO.HIGH:
+            	if pirState == GPIO.LOW:
+                	print("Motion detected\n")
+               	 	pirState = GPIO.HIGH
+  
+                	GPIO.output(27, GPIO.HIGH)
+                	GPIO.output(22, GPIO.HIGH)
+    
+                	#PiCamera records only in .mjpeg or .h264
+                	camera.start_recording("/home/pi/video.h264")
+                	sleep(10)
+                	camera.stop_recording()
+        
+                	if bot.get_updates():
+                    	chat_id = bot.get_updates()[-1].message.chat_id
+                   
+                    	#The version of Telegram for smartphone is unable to read file.mp4 or file.h264. In order to achieve this is
+                    	#important to convert the video file in .mp4
+                    	os.system("ffmpeg -y -r 15 -i /home/pi/video.h264 -an -c:v copy /home/pi/video.mp4 > /dev/null 2>&1")
+         	           	bot.send_video(chat_id, video = open("/home/pi/video.mp4", 'rb'), supports_streaming = True)
+                	else: 
+                    	print("Errore")
+        
+        	else:
+            	GPIO.output(27, GPIO.LOW)
+            	GPIO.output(22, GPIO.LOW)
+
+            	if pirState == GPIO.HIGH:
+                	print("Motion ended\n")
+                	pirState = GPIO.LOW
+
+    	else:
+        	GPIO.output(27, GPIO.LOW)
+        	GPIO.output(22, GPIO.LOW)
+
+        	if pirState == GPIO.HIGH:
+            	pirState = GPIO.LOW
+	\end{lstlisting}
+
+	Di seguito il codice del bot di attivazione: \textit{onoff.py}
+	\begin{lstlisting}[language=Python]
+	from telegram.ext import Updater, CommandHandler
+
+	TOKEN_ONOFF = "YOUR_TOKEN" 
+
+	telegram_act = None
+
+	#Start the bot
+	def start(update, context):
+    	update.message.reply_text("/attiva: attiva l\'antifurto\n/disattiva: disattiva l\'antifurto\n/help: visualizza i comandi")
+
+	#Print available commands
+	def help_command(update, context):
+    	update.message.reply_text("/attiva: attiva l\'antifurto\n/disattiva: disattiva l\'antifurto\n/help: visualizza i comandi")
+
+	#Turn on the system
+	def attiva(update, context):
+    	global telegram_act 
+
+    	update.message.reply_text("Antifurto attivato!")
+    	telegram_act = True
+
+	#Turn off the system
+	def disattiva(update, context):
+   		global telegram_act
+
+    	update.message.reply_text("Antifurto disattivato!")
+   	 	telegram_act = False
+
+    
+	def update_bot():
+    	updater = Updater(TOKEN_ONOFF, use_context=True)
+
+    	updater.dispatcher.add_handler(CommandHandler('start', start))
+    	updater.dispatcher.add_handler(CommandHandler('help', help_command))
+    	updater.dispatcher.add_handler(CommandHandler('attiva', attiva))
+    	updater.dispatcher.add_handler(CommandHandler('disattiva', disattiva))
+
+    	updater.start_polling()
+	\end{lstlisting}
+	
+	Di seguito il codice relativo ad Arduino: \textit{check\_password.ino}
+	\begin{lstlisting}[language=C]
+	#include <Keypad.h>
+
+	const byte ROWS = 4;
+	const byte COLS = 4;
+
+	const byte PASSWD_LEN = 5;
+	char passwd[PASSWD_LEN] = "YOUR_PASSWORD";
+	char data[PASSWD_LEN];
+
+	int counter = 0;
+
+	char hexaKeys[ROWS][COLS] = {
+  		{'1', '2', '3', 'A'},
+  		{'4', '5', '6', 'B'},
+  		{'7', '8', '9', 'C'},
+  		{'*', '0', '#', 'D'}
+	};
+
+	byte pinRows[ROWS] = {9, 8, 7, 6};
+	byte pinCols[COLS] = {5, 4, 3, 2};
+
+	Keypad customKeypad = Keypad(makeKeymap(hexaKeys), pinRows, pinCols, ROWS, COLS);
+
+
+	void setup() {
+  		Serial.begin(9600);
+	}
+
+
+	void loop() {
+  		char customKey = customKeypad.getKey();
+    
+  		if (customKey) {  
+    		data[counter] = customKey;
+    		counter++;
+
+    		if (counter == PASSWD_LEN - 1) {
+      			data[counter] = '\0';
+      
+      		if (!strcmp(data, passwd))
+        		Serial.print("y");    
+    
+     	 	counter = 0;
+    		}//counter
+  		}//customkey
+
+	}	
+
+	\end{lstlisting}
+	
+	Per permettere al sistema antifurto di essere attivo all'accensione del Raspberry è possibile
+	inserire nel file \textit{.bashrc} la seguente linea di codice:
+	
+	\begin{lstlisting}[language=bash]
+	python3 ./antifurto.py
+	\end{lstlisting}
+	
+	
 	\section{Conversione video}
 	La PiCamera produce video in soli due formati, .h264 e .mjpeg, che non permettono la loro 
 	fruizione da Telegram nella sua versione per smartphone. È stato necessario introdurre un 
@@ -140,5 +407,11 @@
 		\item -c:v copy: non effettua un nuovo encoding sul flusso video in uscita;
 		\item -o: percorso del file di output
 	\end{itemize}
+
+	\section{Conclusioni}
+	Il sistema presentato è solo un prototipo: un possibile sviluppo futuro potrà essere quello di 
+	implementare un prodotto finito con circuiti stampati e involucro esterno. Inoltre, non è 
+	presente alcunchè che possa essere utile all'utente in caso di errori: potrebbe, perciò, essere
+	comodo inserire un qualsiasi dispostivo dotato di schermo per facilitare il debug in loco.
 
 \end{document}
