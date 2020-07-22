@@ -243,7 +243,7 @@
 	activateST.start()
 	activateBT.start()
 
-	onoff.update\_bot()
+	onoff.update_bot()
 
 
 	while True:
@@ -266,8 +266,8 @@
                 	if bot.get_updates():
                     	chat_id = bot.get_updates()[-1].message.chat_id
                    
-                    	#The version of Telegram for smartphone is unable to read file.mp4 or file.h264. In order to achieve this is
-                    	#important to convert the video file in .mp4
+                    	#The version of Telegram for smartphone is unable to read file .mjpeg or .h264. 
+						In order to achieve this, it is important to convert the video file in .mp4
                     	os.system("ffmpeg -y -r 15 -i /home/pi/video.h264 -an -c:v copy /home/pi/video.mp4 > /dev/null 2>&1")
          	           	bot.send_video(chat_id, video = open("/home/pi/video.mp4", 'rb'), supports_streaming = True)
                 	else: 
