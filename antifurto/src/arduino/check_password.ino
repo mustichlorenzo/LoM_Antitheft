@@ -4,7 +4,7 @@ const byte ROWS = 4;
 const byte COLS = 4;
 
 const byte PASSWD_LEN = 5;
-char passwd[PASSWD_LEN] = "1234";
+char passwd[PASSWD_LEN] = "YOUR_PASSWORD";
 char data[PASSWD_LEN];
 
 int counter = 0;
@@ -20,6 +20,7 @@ byte pinRows[ROWS] = {9, 8, 7, 6};
 byte pinCols[COLS] = {5, 4, 3, 2};
 
 Keypad customKeypad = Keypad(makeKeymap(hexaKeys), pinRows, pinCols, ROWS, COLS);
+
 
 void setup() {
   Serial.begin(9600);
