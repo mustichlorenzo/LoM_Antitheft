@@ -36,7 +36,7 @@ void loop() {
     if (counter == PASSWD_LEN - 1) {
       data[counter] = '\0';
       
-      if (strcmp(data, passwd))
+      if (!strcmp(data, passwd))
         Serial.print("y");    
     
       counter = 0;
